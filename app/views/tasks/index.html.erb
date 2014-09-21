@@ -1,0 +1,24 @@
+<h1>Barnabas Bulpett's Tasks</h1>
+	<!--form_tag helper method uses controller method as :action parameter -->
+<%= form_tag :action => 'create' do %>
+
+	<p>Enter your task:
+	<!--new_task used to describe field data, which will be stored in @task variable -->
+	<%= text_field_tag 'new_task', @task %>
+	<input type="submit" value="Create Task" class="submitButton">
+	</p>
+<% end %>
+<p>Previous tasks:</p>
+
+<ul class="list">
+	<% @tasks.each do |entry| %>
+	<div class="lines"></div>
+	<li><%= entry.task %>
+		<div id="deleteButton">
+			<%= button_to "delete", {:controller => :tasks,
+      :action => 'destroy', :id => entry.id, :class => "buttonTo"}, :method => :delete %>
+		</div>
+	</li>
+<% end %>
+</ul>
+<p class="listCaption">Hover on a task for actions</p>
